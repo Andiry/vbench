@@ -92,7 +92,7 @@ def _createfsType(fsType, medium):
                 HOWTO_MKFS.get(fsType, "") +
                 " " + medium)
     elif "NOVA" in fsType:
-        return
+        return __execCmd("ls")
     return __execCmd("sudo mkfs." + fsType
 		+ " " + HOWTO_MKFS.get(fsType, "")
 		+ " " + medium)

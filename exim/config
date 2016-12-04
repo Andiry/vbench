@@ -308,7 +308,8 @@ timeout_frozen_after = 7d
 # this helps performance
 split_spool_directory = true
 
-spool_directory = /tmp/mosbench/tmpfs-separate/spool
+#spool_directory = /tmp/mosbench/tmpfs-separate/spool
+spool_directory = /mnt/ramdisk/spool
 
 
 
@@ -669,7 +670,8 @@ remote_smtp:
 local_delivery:
   driver = appendfile
 #  file = /var/mail/$local_part
-  file = /tmp/mosbench/tmpfs-separate/0/$local_part
+  file = /mnt/ramdisk/$local_part
+#  file = /tmp/mosbench/tmpfs-separate/0/$local_part
 # use_lockfile=false does not help performance on GUK kernel
   use_lockfile = false
   delivery_date_add
