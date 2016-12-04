@@ -2,7 +2,8 @@ __all__ = ["primaryHost"]
 
 from mparts.host import Host
 
-primaryHost = Host("optimus.gtisc.gatech.edu")
+primaryHost = Host("127.0.0.1")
+#primaryHost = Host("optimus.gtisc.gatech.edu")
 
 """clientHosts = ["headstrong.gtisc.gatech.edu", #16 core
         "pareto.gtisc.gatech.edu", #80 core

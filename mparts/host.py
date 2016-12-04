@@ -91,9 +91,9 @@ class Host(Task, SourceFileProvider):
         command to execute."""
 
         # Just a sanity check
-        if host == "localhost" or host == "127.0.0.1":
-            raise ValueError("Host name must be routable from all of the "
-                             "hosts in the experiment.")
+#        if host == "localhost" or host == "127.0.0.1":
+#            raise ValueError("Host name must be routable from all of the "
+#                             "hosts in the experiment.")
 
         Task.__init__(self, host = host)
         self.host = host

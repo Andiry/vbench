@@ -33,6 +33,7 @@ HOWTO_MKFS = {
 
 LOOPDEV     = "/dev/loop2"
 NVMEDEV     = "/dev/nvme0n1p1"
+NVMMDEV     = "/dev/pmem0"
 SSDDEV      = "/dev/sdc1"
 HDDDEV      = "/dev/sdd1"
 JNLMED      = "/dev/sdx"
@@ -42,6 +43,7 @@ MEDIUM = {
     "ssd": SSDDEV,
     "hdd": HDDDEV,
     "nvme":NVMEDEV,
+    "nvmm":NVMMDEV,
 }
 
 CURRPATH = os.path.abspath(".")
