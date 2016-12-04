@@ -24,6 +24,7 @@ HOWTO_MKFS = {
     "ext3":"-F",
     "ext4":"-F",
     "ext4_no_jnl":"-F",
+    "ext4_dax":"-F",
     "ext4_sep_jnl":"-F",
     "xfs":"-f",
     "btrfs":"-f",
@@ -131,6 +132,11 @@ def _createDirectoryEnv(noCPUs, medium, fsType, testPath):
             raise ValueError("mounting failed")
     elif "NOVA" in fsType:
         p = __execCmd("sudo mount -t %s -o init %s %s" %
+            (fsType, medium, testPath))
+        if p.returncode is not 0:
+            raise ValueError("mounting failed")
+    elif "dax" in fsType:
+        p = __execCmd("sudo mount -t %s -o dax %s %s" %
             (fsType, medium, testPath))
         if p.returncode is not 0:
             raise ValueError("mounting failed")
