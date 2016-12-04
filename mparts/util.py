@@ -90,6 +90,8 @@ def _createfsType(fsType, medium):
         return __execCmd("sudo mkfs.ext4 " +
                 HOWTO_MKFS.get(fsType, "") +
                 " " + medium)
+    elif "NOVA" in fsType:
+        return
     return __execCmd("sudo mkfs." + fsType
 		+ " " + HOWTO_MKFS.get(fsType, "")
 		+ " " + medium)
@@ -125,6 +127,11 @@ def _createDirectoryEnv(noCPUs, medium, fsType, testPath):
             raise ValueError("no journal mode for ext4 failed")
         p = __execCmd("sudo mount -t %s %s %s" %
                 ("ext4", medium, testPath))
+        if p.returncode is not 0:
+            raise ValueError("mounting failed")
+    elif "NOVA" in fsType:
+        p = __execCmd("sudo mount -t %s -o init %s %s" %
+            (fsType, medium, testPath))
         if p.returncode is not 0:
             raise ValueError("mounting failed")
     else:
