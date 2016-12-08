@@ -87,7 +87,7 @@ def _umountDisk(target):
     __execCmd("sudo umount %s" % target)
 
 def _createfsType(fsType, medium):
-    if "jnl" in fsType:
+    if "jnl" in fsType or "dax" in fsType:
         return __execCmd("sudo mkfs.ext4 " +
                 HOWTO_MKFS.get(fsType, "") +
                 " " + medium)
@@ -136,8 +136,8 @@ def _createDirectoryEnv(noCPUs, medium, fsType, testPath):
         if p.returncode is not 0:
             raise ValueError("mounting failed")
     elif "dax" in fsType:
-        p = __execCmd("sudo mount -t %s -o dax %s %s" %
-            (fsType, medium, testPath))
+        p = __execCmd("sudo mount -o dax %s %s" %
+            (medium, testPath))
         if p.returncode is not 0:
             raise ValueError("mounting failed")
     else:
