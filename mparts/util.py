@@ -27,6 +27,7 @@ HOWTO_MKFS = {
     "ext4_dax":"-F",
     "ext4_sep_jnl":"-F",
     "xfs":"-f",
+    "xfs_dax":"-f",
     "btrfs":"-f",
     "jfs":"-q",
     "reiserfs":"-q",
@@ -87,10 +88,14 @@ def _umountDisk(target):
     __execCmd("sudo umount %s" % target)
 
 def _createfsType(fsType, medium):
-    if "jnl" in fsType or "dax" in fsType:
+    if "ext4" in fsType:
         return __execCmd("sudo mkfs.ext4 " +
                 HOWTO_MKFS.get(fsType, "") +
                 " " + medium)
+    elif "xfs" in fsType:
+        return __execCmd("sudo mkfs.xfs " +
+                HOWTO_MKFS.get(fsType, "") +
+                " " + medium + " -f")
     elif "NOVA" in fsType:
         return __execCmd("ls")
     return __execCmd("sudo mkfs." + fsType
