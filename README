@@ -78,5 +78,5 @@ It appears vbench only builds on Ubuntu 14.04.
 
 Since kernel 4.10-rc1, there is scalability issues with exim. Root cause unknown.
 
-
+After running, use # python support/set-cpus 0-15 to re-enable CPUs.
 

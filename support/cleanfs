@@ -68,7 +68,7 @@ case $1 in
             rm $f
         done
         ;;
-    ext2|ext3|ext4|btrfs|f2fs|xfs|jfs|reiserfs|ext4_no_jnl|NOVA|ext4_dax)
+    ext2|ext3|ext4|btrfs|f2fs|xfs|jfs|reiserfs|ext4_no_jnl|NOVA|ext4_dax|xfs_dax)
 	for i in `ls $BASE/$1/ | grep -E '[0-9]'`
 	do
 	    del_folder $BASE/$1/$i
