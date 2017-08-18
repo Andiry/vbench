@@ -99,6 +99,8 @@ def _createfsType(fsType, medium):
                 " " + medium)
     elif "NOVA" in fsType:
         return __execCmd("ls")
+    elif "pmfs" in fsType:
+        return __execCmd("ls")
     return __execCmd("sudo mkfs." + fsType
 		+ " " + HOWTO_MKFS.get(fsType, "")
 		+ " " + medium)
@@ -137,6 +139,11 @@ def _createDirectoryEnv(noCPUs, medium, fsType, testPath):
         if p.returncode is not 0:
             raise ValueError("mounting failed")
     elif "NOVA" in fsType:
+        p = __execCmd("sudo mount -t %s -o init %s %s" %
+            (fsType, medium, testPath))
+        if p.returncode is not 0:
+            raise ValueError("mounting failed")
+    elif "pmfs" in fsType:
         p = __execCmd("sudo mount -t %s -o init %s %s" %
             (fsType, medium, testPath))
         if p.returncode is not 0:
